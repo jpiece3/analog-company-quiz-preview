@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Analog Company - Quiz Funnel Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0000FF;
+      --color-secondary: #6A9AE6;
+      --color-background: #FFFFFF;
+      --color-background-alt: #F5F5FF;
+      --color-text: #0000FF;
+      --color-text-muted: #6A9AE6;
+      --color-accent: #00CC66;
+      --color-border: #0000FF;
+      --font-heading: 'Jost', sans-serif;
+      --font-body: 'Source Code Pro', monospace;
+      --border-radius: 0px;
+      --shadow: 4px 4px 0 #0000FF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: var(--color-background);
+      border: 2px solid var(--color-primary);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--color-primary);
+    }
+
+    .card-number {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      background: var(--color-primary);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 32px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .card a {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid var(--color-primary);
+      transition: all 0.2s ease;
+    }
+
+    .card a:hover {
+      background: white;
+      color: var(--color-primary);
+    }
+
+    .stats-section {
+      background: var(--color-background-alt);
+      border: 2px solid var(--color-primary);
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+
+    .stats-section h3 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 24px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 2px solid var(--color-secondary);
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      .container {
+        padding: 40px 16px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Client Preview</span>
+      <h1>The Analog Company</h1>
+      <p class="subtitle">Quiz Funnel Development Package - Review documents below before deployment</p>
+    </header>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-number">1</span>
+        <h2>Research Report</h2>
+        <p>Complete market research including customer segments, competitive landscape, SEO keywords, and positioning opportunities.</p>
+        <a href="research.html">View Research</a>
+      </div>
+
+      <div class="card">
+        <span class="card-number">2</span>
+        <h2>Email Sequences</h2>
+        <p>14 automated emails across welcome, nurture, conversion, and win-back sequences with full copy.</p>
+        <a href="email-sequences.html">View Emails</a>
+      </div>
+
+      <div class="card">
+        <span class="card-number">3</span>
+        <h2>Quiz Copy Explainer</h2>
+        <p>Detailed breakdown of every copy decision - questions, answers, result pages, and psychological triggers.</p>
+        <a href="quiz-copy-explainer.html">View Copy</a>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <h3>Funnel Statistics</h3>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Quiz Questions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Customer Profiles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">14</div>
+          <div class="stat-label">Email Sequences</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">15</div>
+          <div class="stat-label">Products Mapped</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Quiz Funnel Package for <a href="https://analogcompany.co" target="_blank">The Analog Company</a></p>
+      <p style="margin-top: 8px;">Generated January 2026</p>
+    </footer>
+  </div>
+</body>
+</html>

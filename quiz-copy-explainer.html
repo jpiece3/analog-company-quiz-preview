@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Copy Explainer - The Analog Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #0000FF;
+            --color-secondary: #6A9AE6;
+            --color-accent: #FFFDDD;
+            --color-background: #FFFFFF;
+            --color-background-alt: #F8F8FF;
+            --color-text-muted: #8080BF;
+            --color-success: #00CC66;
+            --color-warning: #FFB800;
+            --color-error: #FF3366;
+            --font-heading: 'Jost', sans-serif;
+            --font-body: 'Source Code Pro', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-primary);
+            background: var(--color-background);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--color-secondary);
+            margin-bottom: 40px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 32px;
+            border: 2px solid var(--color-primary);
+        }
+
+        .section-header {
+            background: var(--color-primary);
+            color: white;
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header:hover {
+            background: var(--color-secondary);
+        }
+
+        .section-header h2 {
+            margin: 0;
+            color: white;
+        }
+
+        .section-toggle {
+            font-size: 24px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .section-content {
+            padding: 24px;
+            display: none;
+        }
+
+        .section.open .section-content {
+            display: block;
+        }
+
+        .section.open .section-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Subsection */
+        .subsection {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--color-secondary);
+        }
+
+        .subsection:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-background-alt);
+            border: 1px solid var(--color-secondary);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .card h4 {
+            color: var(--color-primary);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid var(--color-secondary);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--color-background-alt);
+            font-family: var(--font-heading);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-family: var(--font-heading);
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .badge-hot {
+            background: var(--color-success);
+            color: white;
+        }
+
+        .badge-warm {
+            background: var(--color-warning);
+            color: var(--color-primary);
+        }
+
+        .badge-cold {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .badge-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Highlight boxes */
+        .highlight {
+            background: var(--color-accent);
+            border: 2px solid var(--color-primary);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .highlight h4 {
+            margin-bottom: 8px;
+        }
+
+        /* Score visualization */
+        .score-bar {
+            height: 24px;
+            background: var(--color-background-alt);
+            border: 1px solid var(--color-secondary);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .score-bar-label {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-heading);
+            font-size: 12px;
+        }
+
+        /* Question type badges */
+        .question-type {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-family: var(--font-heading);
+            background: var(--color-primary);
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        /* Flow diagram */
+        .flow-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .flow-arrow {
+            width: 40px;
+            text-align: center;
+            color: var(--color-secondary);
+            font-size: 20px;
+        }
+
+        .flow-box {
+            flex: 1;
+            background: var(--color-background-alt);
+            border: 1px solid var(--color-secondary);
+            padding: 12px 16px;
+            font-size: 14px;
+        }
+
+        code {
+            background: var(--color-background-alt);
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 24px 16px 60px;
+            }
+
+            .section-header {
+                padding: 12px 16px;
+            }
+
+            .section-content {
+                padding: 16px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .section-content {
+                display: block !important;
+            }
+
+            .section-toggle {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .section-header {
+                background: none !important;
+                color: var(--color-primary) !important;
+                border-bottom: 2px solid var(--color-primary);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Overview</a>
+
+        <h1>Quiz Copy Explainer</h1>
+        <p class="subtitle">The Analog Company - Strategic Breakdown of Copy Decisions</p>
+
+        <!-- Section 1: Question Rationale -->
+        <div class="section open">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>1. Question Rationale</h2>
+                <span class="section-toggle">+</span>
+            </div>
+            <div class="section-content">
+                <p>Each of the 7 quiz questions serves a strategic purpose in understanding the prospect and routing them to the right product. Here's why each question exists.</p>
+
+                <!-- Q1 -->
+                <div class="subsection">
+                    <span class="question-type">card_selection</span>
+                    <h3>Question 1: "What does a typical day look like for you?"</h3>
+
+                    <div class="card">
+                        <h4>Why This Question</h4>
+                        <p>This is the cornerstone question. Lifestyle context determines bag needs more than any other factor. A new parent has different requirements than a frequent traveler, even if both need "large capacity."</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>What It Reveals</h4>
+                        <ul>
+                            <li><strong>Primary profile segment</strong> - This question directly maps to our 5 customer profiles</li>
+                            <li><strong>Emotional state</strong> - Someone "juggling it all" is stressed and needs relief; someone in "creative chaos" values self-expression</li>
+                            <li><strong>Urgency level</strong> - "New chapter" suggests recent life change and higher purchase intent</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Buyer Readiness Indicators</h4>
+                        <ul>
+                            <li>"Juggling it all" (15 pts) - High intent. They've identified a problem and are actively seeking solutions</li>
+                            <li>"New chapter" (14 pts) - Life transition creates purchase urgency</li>
+                            <li>"On the move" (13 pts) - Regular travel = regular bag usage = higher perceived value</li>
+                            <li>"Creative chaos" (12 pts) - Lower urgency but strong brand affinity potential</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="subsection">
+                    <span class="question-type">scale_slider</span>
+                    <h3>Question 2: "How many items do you typically carry with you daily?"</h3>
+
+                    <div class="card">
+                        <h4>Why This Question</h4>
+                        <p>Directly determines bag size recommendation. Mismatched capacity is the #1 reason for bag dissatisfaction. A slider forces honest self-assessment rather than aspirational answers.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>What It Reveals</h4>
+                        <ul>
+                            <li><strong>Capacity needs</strong> - Routes to Mini Tote, Medium Tote, or Totepack</li>
+                            <li><strong>Organization complexity</strong> - More items = more pockets needed</li>
+                            <li><strong>Price tolerance</strong> - Heavy carriers often willing to pay more for the right solution</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Buyer Readiness Indicators</h4>
+                        <ul>
+                            <li>7-10+ items (16 pts) - Actively experiencing bag pain; current bag likely not working</li>
+                            <li>4-6 items (12 pts) - Moderate needs, may be satisfied or seeking upgrade</li>
+                            <li>0-3 items (8 pts) - Light carrier; may not need premium solution</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="subsection">
+                    <span class="question-type">card_selection</span>
+                    <h3>Question 3: "When it comes to bags, what matters most to you?"</h3>
+
+                    <div class="card">
+                        <h4>Why This Question</h4>
+                        <p>Values alignment question. This determines messaging angle more than product selection. Someone who values "quality that lasts" needs different persuasion than someone who wants to "express myself."</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>What It Reveals</h4>
+                        <ul>
+                            <li><strong>Decision criteria</strong> - What will seal the deal for this person?</li>
+                            <li><strong>Objection anticipation</strong> - Quality-focused = price objection likely handled; style-focused = may need more social proof</li>
+                            <li><strong>Email sequence tone</strong> - Drives copy angle in follow-up emails</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Buyer Readiness Indicators</h4>
+                        <ul>
+                            <li>"Works everywhere" (16 pts) - Clear problem, seeking specific solution</li>
+                            <li>"Quality that lasts" (15 pts) - Investment mindset, willing to pay for right product</li>
+                            <li>"Function first" (14 pts) - Practical buyer, features will convert them</li>
+                            <li>"Express myself" (12 pts) - Emotional buyer, may need more nurturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="subsection">
+                    <span class="question-type">multiple_choice</span>
+                    <h3>Question 4: "Do you need your bag to carry a laptop?"</h3>
+
+                    <div class="card">
+                        <h4>Why This Question</h4>
+                        <p>Critical feature filter. Laptop carry is a make-or-break requirement for many buyers. This question prevents recommending a Mini Tote to someone who needs a 17" laptop sleeve.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>What It Reveals</h4>
+                        <ul>
+                            <li><strong>Professional context</strong> - Large laptop = likely office worker or creative professional</li>
+                            <li><strong>Product routing</strong> - Eliminates certain products from consideration</li>
+                            <li><strong>Work-from-anywhere indicator</strong> - Laptop carriers often have hybrid lifestyles</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Buyer Readiness Indicators</h4>
+                        <ul>
+                            <li>"Yes, large" (14 pts) - Daily requirement, will value solution highly</li>
+                            <li>"Yes, smaller" (12 pts) - Flexible needs, multiple products could work</li>
+                            <li>"Sometimes" (10 pts) - Convertible/versatile options ideal</li>
+                            <li>"No tech" (8 pts) - Lifestyle bags, style may trump function</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="subsection">
+                    <span class="question-type">multiple_choice</span>
+                    <h3>Question 5: "What's your biggest frustration with bags you've owned?"</h3>
+
+                    <div class="card">
+                        <h4>Why This Question</h4>
+                        <p>Pain point identification. Buying is about solving problems. This question surfaces the specific problem we can address in result copy and email follow-ups. The "sigh" framing elicits honest, emotional responses.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>What It Reveals</h4>
+                        <ul>
+                            <li><strong>Primary pain point</strong> - Exact problem to address in messaging</li>
+                            <li><strong>Past purchase failures</strong> - What went wrong before</li>
+                            <li><strong>Feature priorities</strong> - Organization pain = pocket emphasis; style pain = customization emphasis</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Buyer Readiness Indicators</h4>
+                        <ul>
+                            <li>"Multiple bags" (16 pts) - Active problem, seeking consolidation</li>
+                            <li>"No organization" (15 pts) - Daily frustration, high motivation to solve</li>
+                            <li>"Fall apart" (14 pts) - Quality pain, likely replaced bags multiple times</li>
+                            <li>"Look boring" (12 pts) - Desire-based, not pain-based (lower urgency)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="subsection">
+                    <span class="question-type">yes_no_toggle</span>
+                    <h3>Question 6: "Are you ready to find your forever bag?"</h3>
+
+                    <div class="card">
+                        <h4>Why This Question</h4>
+                        <p>Direct intent qualifier. The "forever bag" framing creates commitment bias. If they say yes, they've mentally committed to making a decision. This also segments tire-kickers from serious buyers for email sequencing.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>What It Reveals</h4>
+                        <ul>
+                            <li><strong>Purchase timeline</strong> - "Yes" = active buyer; "No" = needs nurturing</li>
+                            <li><strong>Email sequence routing</strong> - Hot path vs. cold nurture</li>
+                            <li><strong>Result page CTA intensity</strong> - Ready buyers get direct CTAs; browsers get softer approach</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Buyer Readiness Indicators</h4>
+                        <ul>
+                            <li>"Yes" (15 pts) - Self-identified as ready. High intent. Hot path candidate.</li>
+                            <li>"No" (6 pts) - Honest about browsing. Needs education before purchase.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="subsection">
+                    <span class="question-type">scale_slider</span>
+                    <h3>Question 7: "Where do you fall on the style spectrum?"</h3>
+
+                    <div class="card">
+                        <h4>Why This Question</h4>
+                        <p>Style preference for product matching. The spectrum format (Classic vs Bold) avoids binary thinking and captures nuance. This determines whether we recommend neutral classics or limited edition colorways.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>What It Reveals</h4>
+                        <ul>
+                            <li><strong>Product color recommendations</strong> - Black vs Limited Edition colorways</li>
+                            <li><strong>Customization interest</strong> - Bold-leaning users are customization upsell candidates</li>
+                            <li><strong>Risk tolerance</strong> - Bold style = willing to try new things</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Buyer Readiness Indicators</h4>
+                        <ul>
+                            <li>Bold (8-10): 14 pts - Engaged with style, emotional connection likely</li>
+                            <li>Balanced (4-7): 12 pts - Practical, will consider multiple options</li>
+                            <li>Classic (1-3): 10 pts - Risk-averse, wants proven options with social proof</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Answer Psychology -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>2. Answer Psychology</h2>
+                <span class="section-toggle">+</span>
+            </div>
+            <div class="section-content">
+                <p>Every answer option is carefully crafted to achieve three things: (1) accurately segment the user, (2) create a micro-commitment toward purchase, and (3) make the user feel understood.</p>
+
+                <div class="highlight">
+                    <h4>The Micro-Commitment Ladder</h4>
+                    <p>Each answer selection is a small "yes" that builds toward the larger "yes" of purchase. By the time users reach the email capture, they've made 7 micro-commitments, priming them for conversion.</p>
+                </div>
+
+                <!-- Q1 Answers -->
+                <div class="subsection">
+                    <h3>Question 1 Answer Psychology</h3>
+
+                    <table>
+                        <tr>
+                            <th>Answer</th>
+                            <th>Why It Exists</th>
+                            <th>What It Indicates</th>
+                            <th>Micro-Commitment</th>
+                        </tr>
+                        <tr>
+                            <td>"Juggling it all"</td>
+                            <td>Captures busy professionals who feel overwhelmed by daily demands</td>
+                            <td>High capacity needs, values efficiency, likely experiencing bag frustration</td>
+                            <td>"Yes, I'm busy and need a solution that keeps up"</td>
+                        </tr>
+                        <tr>
+                            <td>"Creative chaos"</td>
+                            <td>Appeals to those who see themselves as non-conformist</td>
+                            <td>Values uniqueness, may prioritize style over pure function</td>
+                            <td>"Yes, I'm not like typical consumers"</td>
+                        </tr>
+                        <tr>
+                            <td>"New chapter"</td>
+                            <td>Acknowledges life transitions as legitimate purchasing triggers</td>
+                            <td>High purchase urgency, needs validation for spending</td>
+                            <td>"Yes, my situation has changed and that justifies new gear"</td>
+                        </tr>
+                        <tr>
+                            <td>"On the move"</td>
+                            <td>Captures frequent travelers and commuters</td>
+                            <td>Values durability, security features, versatility</td>
+                            <td>"Yes, I'm active and need gear that performs"</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Q3 Answers -->
+                <div class="subsection">
+                    <h3>Question 3 Answer Psychology (Values)</h3>
+
+                    <table>
+                        <tr>
+                            <th>Answer</th>
+                            <th>Why It Exists</th>
+                            <th>What It Indicates</th>
+                            <th>Micro-Commitment</th>
+                        </tr>
+                        <tr>
+                            <td>"Function first"</td>
+                            <td>Validates practical buyers who feel judged for not caring about fashion</td>
+                            <td>Will convert on features, not aesthetics. Needs specs and details.</td>
+                            <td>"Yes, I'm practical and that's okay"</td>
+                        </tr>
+                        <tr>
+                            <td>"Express myself"</td>
+                            <td>Appeals to identity-driven buyers</td>
+                            <td>Customization upsell candidate. Emotional decision maker.</td>
+                            <td>"Yes, my bag is an extension of who I am"</td>
+                        </tr>
+                        <tr>
+                            <td>"Quality that lasts"</td>
+                            <td>Pre-handles price objection by framing as investment</td>
+                            <td>Will pay more for durability. Reviews and longevity claims matter.</td>
+                            <td>"Yes, I'm willing to invest in the right thing"</td>
+                        </tr>
+                        <tr>
+                            <td>"Works everywhere"</td>
+                            <td>Captures the "one bag" dream that many share</td>
+                            <td>Totepack candidate. Frustrated by owning multiple bags.</td>
+                            <td>"Yes, I want to simplify my life"</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Q5 Answers -->
+                <div class="subsection">
+                    <h3>Question 5 Answer Psychology (Pain Points)</h3>
+
+                    <table>
+                        <tr>
+                            <th>Answer</th>
+                            <th>Why It Exists</th>
+                            <th>What It Indicates</th>
+                            <th>Micro-Commitment</th>
+                        </tr>
+                        <tr>
+                            <td>"Can never find anything"</td>
+                            <td>Organization is a universal pain point we can solve directly</td>
+                            <td>Will value pocket layout, carabiner for keys, dedicated compartments</td>
+                            <td>"Yes, I have a specific problem that frustrates me daily"</td>
+                        </tr>
+                        <tr>
+                            <td>"Look boring or like everyone else's"</td>
+                            <td>Style pain exists even for "function-first" buyers</td>
+                            <td>Limited editions and customization will appeal strongly</td>
+                            <td>"Yes, I want to stand out"</td>
+                        </tr>
+                        <tr>
+                            <td>"Fall apart too quickly"</td>
+                            <td>Quality pain creates openness to paying more</td>
+                            <td>Materials, construction, and durability claims will convert</td>
+                            <td>"Yes, I've wasted money on cheap bags before"</td>
+                        </tr>
+                        <tr>
+                            <td>"Need multiple bags"</td>
+                            <td>The Totepack's core value proposition</td>
+                            <td>Convertible bags directly solve this pain</td>
+                            <td>"Yes, I'm tired of switching bags"</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Q6 Answer -->
+                <div class="subsection">
+                    <h3>Question 6 Answer Psychology (Intent)</h3>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <h4>"Yes, I'm ready to invest"</h4>
+                            <p><strong>Why it exists:</strong> Self-selection mechanism for high-intent buyers</p>
+                            <p><strong>What it indicates:</strong> Active purchase mode. Ready for direct CTAs.</p>
+                            <p><strong>Micro-commitment:</strong> "Yes, I'm committed to making a decision and spending money"</p>
+                        </div>
+                        <div class="card">
+                            <h4>"Just exploring options"</h4>
+                            <p><strong>Why it exists:</strong> Allows honest tire-kickers to self-identify without shame</p>
+                            <p><strong>What it indicates:</strong> Needs education and nurturing before purchase</p>
+                            <p><strong>Micro-commitment:</strong> "Yes, I'm interested enough to keep learning"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Scoring Logic -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>3. Scoring Logic Explained</h2>
+                <span class="section-toggle">+</span>
+            </div>
+            <div class="section-content">
+                <p>The scoring system translates quiz responses into a 0-100 "temperature" score that determines result page messaging and email sequence routing.</p>
+
+                <div class="highlight">
+                    <h4>Score Distribution</h4>
+                    <p>Maximum possible score: 100 points. Minimum: 48 points. Each question contributes 6-16 points based on buying intent signals, not "correctness."</p>
+                </div>
+
+                <!-- Score ranges -->
+                <div class="subsection">
+                    <h3>Temperature Band Thresholds</h3>
+
+                    <div class="card">
+                        <h4><span class="badge badge-hot">Hot</span> 80-100 Points</h4>
+                        <div class="score-bar">
+                            <div class="score-bar-fill" style="width: 100%; background: var(--color-success);"></div>
+                            <span class="score-bar-label" style="color: white;">80-100</span>
+                        </div>
+                        <p><strong>Why 80?</strong> Statistically, users scoring 80+ have selected high-intent answers on at least 5 of 7 questions. They've self-identified as ready buyers with clear needs. Direct CTAs won't feel pushy to this segment.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4><span class="badge badge-warm">Warm</span> 50-79 Points</h4>
+                        <div class="score-bar">
+                            <div class="score-bar-fill" style="width: 79%; background: var(--color-warning);"></div>
+                            <span class="score-bar-label">50-79</span>
+                        </div>
+                        <p><strong>Why 50?</strong> This captures the middle majority. They have interest and some buying signals but need validation through social proof, comparisons, and education before committing.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4><span class="badge badge-cold">Cold</span> 0-49 Points</h4>
+                        <div class="score-bar">
+                            <div class="score-bar-fill" style="width: 49%; background: var(--color-secondary);"></div>
+                            <span class="score-bar-label">0-49</span>
+                        </div>
+                        <p><strong>Why 49?</strong> Users below 50 consistently selected "exploring" answers. Hard sells will turn them off. Educational content, brand storytelling, and soft CTAs work better for this segment.</p>
+                    </div>
+                </div>
+
+                <!-- Factor weights -->
+                <div class="subsection">
+                    <h3>Factor Weights Rationale</h3>
+
+                    <table>
+                        <tr>
+                            <th>Question</th>
+                            <th>Score Range</th>
+                            <th>Weight</th>
+                            <th>Why This Weight</th>
+                        </tr>
+                        <tr>
+                            <td>Q1: Lifestyle</td>
+                            <td>12-15 pts</td>
+                            <td>High</td>
+                            <td>Lifestyle determines urgency. "New chapter" = life event purchase trigger.</td>
+                        </tr>
+                        <tr>
+                            <td>Q2: Carry Volume</td>
+                            <td>8-16 pts</td>
+                            <td>High</td>
+                            <td>Heavy carriers experience more bag pain and value solutions more.</td>
+                        </tr>
+                        <tr>
+                            <td>Q3: Priority</td>
+                            <td>12-16 pts</td>
+                            <td>High</td>
+                            <td>"Works everywhere" = clear problem. "Quality" = investment mindset.</td>
+                        </tr>
+                        <tr>
+                            <td>Q4: Laptop</td>
+                            <td>8-14 pts</td>
+                            <td>Medium</td>
+                            <td>Laptop need is binary but doesn't indicate purchase readiness alone.</td>
+                        </tr>
+                        <tr>
+                            <td>Q5: Frustration</td>
+                            <td>12-16 pts</td>
+                            <td>High</td>
+                            <td>Pain points drive purchases. "Multiple bags" = acute problem.</td>
+                        </tr>
+                        <tr>
+                            <td>Q6: Ready</td>
+                            <td>6-15 pts</td>
+                            <td>Highest</td>
+                            <td>Direct intent declaration. 9-point swing is the largest single factor.</td>
+                        </tr>
+                        <tr>
+                            <td>Q7: Style</td>
+                            <td>10-14 pts</td>
+                            <td>Low</td>
+                            <td>Style preference affects product routing but not purchase intent.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Email Sequence Strategy -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>4. Email Sequence Strategy</h2>
+                <span class="section-toggle">+</span>
+            </div>
+            <div class="section-content">
+                <p>The 14-email, 5-sequence system is designed to match message intensity to buyer readiness while maintaining consistent brand voice.</p>
+
+                <!-- Timing rationale -->
+                <div class="subsection">
+                    <h3>Day/Timing Rationale</h3>
+
+                    <div class="card">
+                        <h4>Welcome Sequence (Days 0, 2, 5)</h4>
+                        <p><strong>Day 0:</strong> Immediate results delivery. Peak attention and excitement. Include discount code for immediate action.</p>
+                        <p><strong>Day 2:</strong> First follow-up after "sleeping on it." Address common objection (bag trade-offs) with solution (convertible design).</p>
+                        <p><strong>Day 5:</strong> Social proof deployment. By now they've either purchased or need external validation to proceed.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Cold Nurture (Days 1, 3, 7, 10)</h4>
+                        <p><strong>Day 1:</strong> Acknowledge non-purchase without pressure. Validate their bag frustration.</p>
+                        <p><strong>Day 3:</strong> Educational content (features to look for). Position as helpful, not salesy.</p>
+                        <p><strong>Day 7:</strong> Brand story and values. Build emotional connection before asking for purchase.</p>
+                        <p><strong>Day 10:</strong> Soft check-in with FAQ format. Respect their timeline while keeping door open.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Warm Activation (Days 1, 3, 6)</h4>
+                        <p><strong>Day 1:</strong> Comparison guide. They're ready to decide but need help choosing which product.</p>
+                        <p><strong>Day 3:</strong> Product-specific social proof. Reviews from people like them.</p>
+                        <p><strong>Day 6:</strong> Urgency push. Code expiration creates decision forcing function.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Hot Path (Days 1, 4)</h4>
+                        <p><strong>Day 1:</strong> Direct action email. They're ready. Remove friction. State logistics clearly.</p>
+                        <p><strong>Day 4:</strong> Final urgency. Code expiration. Last chance before full price.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Win-Back (Days 1, 5)</h4>
+                        <p><strong>Day 1:</strong> Re-engagement and feedback request. Understand why they didn't buy.</p>
+                        <p><strong>Day 5:</strong> Final offer (15% vs 10%). Higher discount as last resort before going silent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Customer Segments -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>5. Customer Segments Explained</h2>
+                <span class="section-toggle">+</span>
+            </div>
+            <div class="section-content">
+                <p>Five distinct customer profiles emerge from quiz responses. Each profile receives tailored product recommendations and messaging.</p>
+
+                <!-- Segment table -->
+                <div class="subsection">
+                    <h3>Profile Overview</h3>
+
+                    <table>
+                        <tr>
+                            <th>Segment ID</th>
+                            <th>Profile Name</th>
+                            <th>Key Characteristics</th>
+                            <th>Top Product Match</th>
+                        </tr>
+                        <tr>
+                            <td><code>organized-multitasker</code></td>
+                            <td>The Organized Multitasker</td>
+                            <td>Busy, juggling multiple contexts, values efficiency and organization</td>
+                            <td>No.1 Analog Totepack ($129)</td>
+                        </tr>
+                        <tr>
+                            <td><code>expressive-individualist</code></td>
+                            <td>The Expressive Individualist</td>
+                            <td>Creative, style-conscious, sees bag as self-expression</td>
+                            <td>Analog No.33 Mini Tote Corduroy ($68)</td>
+                        </tr>
+                        <tr>
+                            <td><code>practical-minimalist</code></td>
+                            <td>The Practical Minimalist</td>
+                            <td>Quality-focused, prefers classics, dislikes excess</td>
+                            <td>The Black Analog Medium Tote ($68)</td>
+                        </tr>
+                        <tr>
+                            <td><code>life-changer</code></td>
+                            <td>The Life Changer</td>
+                            <td>Going through transition (baby, job, etc.), needs adaptable gear</td>
+                            <td>No.5 Analog Totepack ($129)</td>
+                        </tr>
+                        <tr>
+                            <td><code>traveler-adventurer</code></td>
+                            <td>The Traveler / Adventurer</td>
+                            <td>Frequent traveler, values durability and security features</td>
+                            <td>The Analog Backpack v2 ($97)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- How quiz maps to segments -->
+                <div class="subsection">
+                    <h3>How Quiz Answers Map to Segments</h3>
+
+                    <div class="card">
+                        <h4>Tag Accumulation Method</h4>
+                        <p>Each answer adds tags to the user's profile. The segment with the most matching tags becomes the primary profile.</p>
+
+                        <p><strong>Example:</strong> A user who selects:</p>
+                        <ul>
+                            <li>Q1: "Juggling it all" (+organized-multitasker, +high-capacity)</li>
+                            <li>Q3: "Works everywhere" (+organized-multitasker, +versatility-priority)</li>
+                            <li>Q5: "Multiple bags" (+versatility-pain, +traveler-adventurer)</li>
+                        </ul>
+                        <p>Result: organized-multitasker wins with 2 direct tags + supporting tags</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Tie-Breaker Rule</h4>
+                        <p>If two profiles tie, Question 1 (Lifestyle) wins. This question was designed to be the cornerstone identifier.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding-top: 40px; border-top: 2px solid var(--color-secondary); margin-top: 60px;">
+            <p style="font-size: 12px; color: var(--color-text-muted);">Strategic copy breakdown for The Analog Company quiz funnel</p>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;"><a href="index.html" style="color: var(--color-primary); text-decoration: none;">&larr; Back to Overview</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

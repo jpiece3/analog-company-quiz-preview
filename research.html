@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Report - The Analog Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0000FF;
+      --color-secondary: #6A9AE6;
+      --color-background: #FFFFFF;
+      --color-background-alt: #F5F5FF;
+      --color-text: #0000FF;
+      --color-text-muted: #6A9AE6;
+      --color-accent: #00CC66;
+      --color-border: #0000FF;
+      --font-heading: 'Jost', sans-serif;
+      --font-body: 'Source Code Pro', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    .back-link:hover {
+      color: var(--color-primary);
+    }
+
+    header {
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-secondary);
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    p {
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    ul, ol {
+      font-size: 13px;
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 12px;
+    }
+
+    th, td {
+      border: 1px solid var(--color-secondary);
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--color-background-alt);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-box {
+      background: var(--color-background-alt);
+      border: 2px solid var(--color-primary);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .info-box h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .profile-card {
+      background: var(--color-background);
+      border: 2px solid var(--color-primary);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 4px 4px 0 var(--color-secondary);
+    }
+
+    .profile-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .profile-id {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 4px 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .tag.accent {
+      background: var(--color-accent);
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    code {
+      background: var(--color-background-alt);
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .container {
+        padding: 40px 16px;
+      }
+
+      table {
+        font-size: 11px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Back to Overview</a>
+
+    <header>
+      <span class="badge">Research Report</span>
+      <h1>The Analog Company</h1>
+      <p class="subtitle">Market research, customer segments, competitive analysis, and positioning strategy</p>
+    </header>
+
+    <!-- Business Overview -->
+    <section class="section">
+      <h2>1. Business Overview</h2>
+
+      <div class="info-box">
+        <h4>Company Profile</h4>
+        <ul>
+          <li><strong>Name:</strong> The Analog Company</li>
+          <li><strong>Website:</strong> analogcompany.co</li>
+          <li><strong>Location:</strong> Singapore (ships worldwide)</li>
+          <li><strong>Business Model:</strong> Direct-to-consumer e-commerce (Shopify)</li>
+          <li><strong>Product Category:</strong> Utilitarian canvas tote bags, totepacks, backpacks, and customization accessories</li>
+        </ul>
+      </div>
+
+      <h3>Core Products</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Price Range</th>
+            <th>Key Features</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Totepacks</td>
+            <td>$149</td>
+            <td>Convertible tote-to-backpack, multiple pockets</td>
+          </tr>
+          <tr>
+            <td>Canvas Tote Bags</td>
+            <td>$66-$109</td>
+            <td>Water repellent options, laptop sleeves</td>
+          </tr>
+          <tr>
+            <td>Mini Totes</td>
+            <td>$66</td>
+            <td>Water repellent corduroy, compact size</td>
+          </tr>
+          <tr>
+            <td>XL Laptop Totes</td>
+            <td>$80+</td>
+            <td>Fits up to 17" laptops</td>
+          </tr>
+          <tr>
+            <td>Backpacks</td>
+            <td>$80+</td>
+            <td>Water repellent nylon</td>
+          </tr>
+          <tr>
+            <td>Customizations</td>
+            <td>$5-$27</td>
+            <td>Bobbins, enamel pins, patches, charms</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Unique Value Propositions</h3>
+      <ol>
+        <li><strong>Design heritage:</strong> Inspired by 1960s Le Corbusier architecture</li>
+        <li><strong>Thoughtful functionality:</strong> Built-in drink holders, carabiners, adjustable straps</li>
+        <li><strong>Endless personalization:</strong> Handmade Bobbins, enamel pins, iron-on patches</li>
+        <li><strong>Limited batch production:</strong> Deadstock materials, limited quantities</li>
+        <li><strong>Versatility:</strong> Multiple wear styles (tote, backpack, crossbody)</li>
+      </ol>
+
+      <h3>Social Proof</h3>
+      <p><strong>4.83 stars</strong> from <strong>1,291 reviews</strong></p>
+    </section>
+
+    <!-- Brand Voice -->
+    <section class="section">
+      <h2>2. Brand Voice Analysis</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Warmth</td>
+            <td>Friendly, welcoming ("Welcome to the Analog World")</td>
+          </tr>
+          <tr>
+            <td>Playful</td>
+            <td>Uses emojis liberally, fun product names</td>
+          </tr>
+          <tr>
+            <td>Authentic</td>
+            <td>Small batch, handmade emphasis</td>
+          </tr>
+          <tr>
+            <td>Utilitarian</td>
+            <td>Function-first language, practical benefits</td>
+          </tr>
+          <tr>
+            <td>Personal</td>
+            <td>Celebrates individuality and uniqueness</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Key Phrases</h3>
+      <ul>
+        <li>"Welcome to the Analog World"</li>
+        <li>"Made to serve us in our daily lives"</li>
+        <li>"Celebrate each person's unique individuality"</li>
+        <li>"Thoughtful features"</li>
+        <li>"Make it your own"</li>
+      </ul>
+    </section>
+
+    <!-- Customer Segments by Temperature -->
+    <section class="section">
+      <h2>3. Customer Segments by Temperature</h2>
+
+      <div class="profile-card">
+        <h4>Hot (Ready to Buy)</h4>
+        <p class="profile-id">Active shoppers comparing options</p>
+        <p><strong>Pain Points:</strong></p>
+        <ul>
+          <li>Overwhelmed by bag options, unsure which fits their lifestyle</li>
+          <li>Need something NOW for upcoming trip, new job, or life change</li>
+          <li>Previous bags failed them (not enough pockets, not versatile)</li>
+        </ul>
+        <p><strong>Messaging Focus:</strong> Remove objections, create urgency, provide social proof</p>
+      </div>
+
+      <div class="profile-card">
+        <h4>Warm (Considering)</h4>
+        <p class="profile-id">Aware of frustrations but still researching</p>
+        <p><strong>Pain Points:</strong></p>
+        <ul>
+          <li>Current bag doesn't fit lifestyle (work, gym, travel)</li>
+          <li>Tired of switching between multiple bags</li>
+          <li>Hesitant about buying online without trying it</li>
+        </ul>
+        <p><strong>Messaging Focus:</strong> Build trust, educate on differentiators, show versatility</p>
+      </div>
+
+      <div class="profile-card">
+        <h4>Cold (Problem-Aware)</h4>
+        <p class="profile-id">Experiencing frustrations but not actively searching</p>
+        <p><strong>Pain Points:</strong></p>
+        <ul>
+          <li>Chronic disorganization (always digging for keys, phone)</li>
+          <li>Shoulder/back pain from uncomfortable bags</li>
+          <li>Life transition creating new needs</li>
+        </ul>
+        <p><strong>Messaging Focus:</strong> Problem awareness, inspiration, lifestyle vision</p>
+      </div>
+    </section>
+
+    <!-- Customer Profiles -->
+    <section class="section">
+      <h2>4. Customer Profiles (Quiz Results)</h2>
+
+      <div class="profile-card">
+        <h4>The Organized Multitasker</h4>
+        <p class="profile-id"><code>organized-multitasker</code></p>
+        <p><strong>Who They Are:</strong> Busy professionals juggling work, gym, errands. Parents managing activities. People who hate switching bags.</p>
+        <p><strong>What They Value:</strong></p>
+        <ul>
+          <li>Maximum organization and compartments</li>
+          <li>Versatility (tote to backpack conversion)</li>
+          <li>Quick access to essentials</li>
+        </ul>
+        <p><strong>Best Products:</strong> Analog Totepacks, XL Laptop Totes</p>
+      </div>
+
+      <div class="profile-card">
+        <h4>The Expressive Individualist</h4>
+        <p class="profile-id"><code>expressive-individualist</code></p>
+        <p><strong>Who They Are:</strong> Creative professionals and students. Anyone tired of "boring" functional bags. People who see accessories as self-expression.</p>
+        <p><strong>What They Value:</strong></p>
+        <ul>
+          <li>Unique, customizable aesthetics</li>
+          <li>Color variety and limited editions</li>
+          <li>Standing out from the crowd</li>
+        </ul>
+        <p><strong>Best Products:</strong> Limited Edition Totes, Bobbins, Corduroy Mini Totes</p>
+      </div>
+
+      <div class="profile-card">
+        <h4>The Practical Minimalist</h4>
+        <p class="profile-id"><code>practical-minimalist</code></p>
+        <p><strong>Who They Are:</strong> Quality-over-quantity buyers. Sustainability-conscious. Those who prefer clean, understated style.</p>
+        <p><strong>What They Value:</strong></p>
+        <ul>
+          <li>Durability and longevity</li>
+          <li>Thoughtful, essential features only</li>
+          <li>Classic colors that work with everything</li>
+        </ul>
+        <p><strong>Best Products:</strong> Black Analog Medium Tote, Water Repellent Canvas</p>
+      </div>
+
+      <div class="profile-card">
+        <h4>The Life Changer</h4>
+        <p class="profile-id"><code>life-changer</code></p>
+        <p><strong>Who They Are:</strong> New parents, career changers, people returning to school. Anyone whose life context just shifted.</p>
+        <p><strong>What They Value:</strong></p>
+        <ul>
+          <li>Adaptability to new routines</li>
+          <li>Style that doesn't scream "mom bag"</li>
+          <li>Ease of organization under chaos</li>
+        </ul>
+        <p><strong>Best Products:</strong> No.5 Analog Totepack, Large capacity totes</p>
+      </div>
+
+      <div class="profile-card">
+        <h4>The Traveler / Adventurer</h4>
+        <p class="profile-id"><code>traveler-adventurer</code></p>
+        <p><strong>Who They Are:</strong> Frequent travelers, digital nomads, weekend warriors, commuters.</p>
+        <p><strong>What They Value:</strong></p>
+        <ul>
+          <li>Packability and versatility</li>
+          <li>Security features (zippers, hidden pockets)</li>
+          <li>Water resistance</li>
+        </ul>
+        <p><strong>Best Products:</strong> Water Repellent options, Totepacks, Pickleball Bag</p>
+      </div>
+    </section>
+
+    <!-- Positioning Angles -->
+    <section class="section">
+      <h2>5. Positioning Angles</h2>
+
+      <div class="info-box">
+        <h4>Angle 1: The One-Bag Life</h4>
+        <p><strong>Hook:</strong> "What if you only needed one bag?"</p>
+        <p><strong>Core Message:</strong> Stop juggling multiple bags. The Analog Totepack goes from office to gym to date night.</p>
+        <p><strong>Target:</strong> Organized Multitasker, Practical Minimalist</p>
+      </div>
+
+      <div class="info-box">
+        <h4>Angle 2: Your Bag, Your Rules</h4>
+        <p><strong>Hook:</strong> "Why blend in when you were made to stand out?"</p>
+        <p><strong>Core Message:</strong> With unlimited color combinations and customizations, create a bag as unique as you.</p>
+        <p><strong>Target:</strong> Expressive Individualist</p>
+      </div>
+
+      <div class="info-box">
+        <h4>Angle 3: Thoughtful Design for Real Life</h4>
+        <p><strong>Hook:</strong> "Someone finally designed a bag for how you actually live."</p>
+        <p><strong>Core Message:</strong> Built-in drink holder. Multiple wear styles. A pocket for everything.</p>
+        <p><strong>Target:</strong> All segments</p>
+      </div>
+
+      <div class="info-box">
+        <h4>Angle 4: The Upgrade Moment</h4>
+        <p><strong>Hook:</strong> "Your life changed. Shouldn't your bag?"</p>
+        <p><strong>Core Message:</strong> New job? New baby? Find the bag that fits who you're becoming.</p>
+        <p><strong>Target:</strong> Life Changer</p>
+      </div>
+    </section>
+
+    <!-- SEO Keywords -->
+    <section class="section">
+      <h2>6. SEO Keywords</h2>
+
+      <h3>Primary Keywords (High Volume)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Search Volume</th>
+            <th>CPC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>canvas tote bag</td>
+            <td>90,500</td>
+            <td>$2.25</td>
+          </tr>
+          <tr>
+            <td>work bag women</td>
+            <td>27,100</td>
+            <td>$2.17</td>
+          </tr>
+          <tr>
+            <td>personalized tote bag</td>
+            <td>22,200</td>
+            <td>$8.46</td>
+          </tr>
+          <tr>
+            <td>work tote bag</td>
+            <td>18,100</td>
+            <td>$1.55</td>
+          </tr>
+          <tr>
+            <td>cute tote bag</td>
+            <td>12,100</td>
+            <td>$1.05</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Long-Tail Opportunities</h3>
+      <ul>
+        <li>canvas tote bag heavy duty (8,100)</li>
+        <li>durable canvas tote bag (8,100) - Growing 16,344% YoY</li>
+        <li>mini canvas tote bag (9,900)</li>
+        <li>convertible tote backpack</li>
+        <li>tote bag with laptop sleeve</li>
+      </ul>
+    </section>
+
+    <!-- Competitive Landscape -->
+    <section class="section">
+      <h2>7. Competitive Landscape</h2>
+
+      <h3>Competitive Advantages</h3>
+      <ol>
+        <li><strong>Unique hybrid category:</strong> Totepack (tote + backpack) not offered by most competitors</li>
+        <li><strong>Customization system:</strong> Proprietary Bobbins, pins, patches ecosystem</li>
+        <li><strong>Singapore design heritage:</strong> Distinct from Western-centric brands</li>
+        <li><strong>Price sweet spot:</strong> Premium quality at accessible price ($66-$149)</li>
+        <li><strong>Limited editions:</strong> Creates urgency and collectibility</li>
+      </ol>
+
+      <h3>Positioning Statement</h3>
+      <div class="info-box">
+        <p>Position as the <strong>"Thoughtfully Designed Everyday Bag"</strong> - filling the gap between:</p>
+        <ul>
+          <li><strong>Mass market</strong> (Target, Amazon) - low quality, no personality</li>
+          <li><strong>Designer</strong> (Kate Spade, Coach) - high price, style over function</li>
+          <li><strong>Craft/Etsy</strong> - unique but inconsistent quality</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Market Context -->
+    <section class="section">
+      <h2>8. Market Context (2026)</h2>
+
+      <h3>Tote Bag Market</h3>
+      <ul>
+        <li><strong>Market size:</strong> $10.05 billion (2025), growing at 4.9% CAGR</li>
+        <li><strong>Canvas segment:</strong> 26.70% share projected by 2035</li>
+        <li><strong>Key driver:</strong> Sustainability and plastic bag bans</li>
+      </ul>
+
+      <h3>Consumer Behavior Shifts</h3>
+      <ol>
+        <li><strong>Hybrid work reality:</strong> Bags must function as "mobile offices"</li>
+        <li><strong>Modularity demand:</strong> Consumers want convertible bags</li>
+        <li><strong>Values-based purchasing:</strong> 75% of Gen Z prefer sustainable brands</li>
+        <li><strong>Personalization premium:</strong> Custom bags as identity expressions</li>
+      </ol>
+    </section>
+
+    <footer style="text-align: center; padding-top: 40px; border-top: 2px solid var(--color-secondary); margin-top: 60px;">
+      <p style="font-size: 12px; color: var(--color-text-muted);">Research compiled January 2026</p>
+      <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;"><a href="index.html" style="color: var(--color-primary); text-decoration: none;">&larr; Back to Overview</a></p>
+    </footer>
+  </div>
+</body>
+</html>

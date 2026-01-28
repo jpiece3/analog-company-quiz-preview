@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Sequences - The Analog Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0000FF;
+      --color-secondary: #6A9AE6;
+      --color-background: #FFFFFF;
+      --color-background-alt: #F5F5FF;
+      --color-text: #0000FF;
+      --color-text-muted: #6A9AE6;
+      --color-accent: #00CC66;
+      --color-hot: #FF4444;
+      --color-warm: #FFB800;
+      --color-cold: #6A9AE6;
+      --font-heading: 'Jost', sans-serif;
+      --font-body: 'Source Code Pro', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    .back-link:hover {
+      color: var(--color-primary);
+    }
+
+    header {
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .sequence-section {
+      margin-bottom: 60px;
+    }
+
+    .sequence-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-secondary);
+    }
+
+    .sequence-badge {
+      padding: 6px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    .sequence-badge.welcome { background: var(--color-primary); }
+    .sequence-badge.hot { background: var(--color-hot); }
+    .sequence-badge.warm { background: var(--color-warm); color: #333; }
+    .sequence-badge.cold { background: var(--color-cold); }
+    .sequence-badge.winback { background: #8B5CF6; }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .email-card {
+      background: var(--color-background);
+      border: 2px solid var(--color-primary);
+      margin-bottom: 24px;
+      box-shadow: 4px 4px 0 var(--color-secondary);
+    }
+
+    .email-header {
+      background: var(--color-background-alt);
+      padding: 16px 24px;
+      border-bottom: 2px solid var(--color-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .email-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .email-day {
+      background: var(--color-primary);
+      color: white;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .email-id {
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+
+    .email-subject {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .email-body {
+      padding: 24px;
+    }
+
+    .email-body p {
+      font-size: 13px;
+      margin-bottom: 16px;
+      white-space: pre-wrap;
+    }
+
+    .email-body strong {
+      font-weight: 600;
+    }
+
+    .email-cta {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin: 8px 0;
+    }
+
+    .email-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--color-secondary);
+      background: var(--color-background-alt);
+    }
+
+    .email-footer p {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    .toggle-btn {
+      background: none;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+      padding: 8px 16px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .email-body.collapsed {
+      max-height: 100px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .email-body.collapsed::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(transparent, white);
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .container {
+        padding: 40px 16px;
+      }
+
+      .stats-bar {
+        gap: 16px;
+      }
+
+      .email-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Back to Overview</a>
+
+    <header>
+      <span class="badge">Email Sequences</span>
+      <h1>Automated Email Flows</h1>
+      <p class="subtitle">14 emails across 5 sequences - automatically triggered based on quiz results</p>
+
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Welcome Emails</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Hot Path Emails</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Warm Path Emails</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Cold Path Emails</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Win-Back Emails</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Welcome Sequence -->
+    <section class="sequence-section">
+      <div class="sequence-header">
+        <span class="sequence-badge welcome">Welcome</span>
+        <h2>Welcome Sequence (All Leads)</h2>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 0</span>
+            <span class="email-id">welcome-1</span>
+          </div>
+          <span class="email-subject">Your Analog bag match is inside</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+Thanks for taking the quiz.
+
+Based on your answers, your top match is the <strong>{recommended_product}</strong>.
+
+Here's why: {match_reason_short}
+
+Your personalized 10% code: <strong>MYMATCH10</strong></p>
+          <a href="#" class="email-cta">See Your Full Results</a>
+          <p>Quick note about us: We're a small team in Singapore designing bags for people who actually use them. Every feature exists because someone needed it. Built-in drink holders, carabiners for keys, bottom compartments for gym shoes. Real solutions, not marketing gimmicks.
+
+Questions? Just reply to this email.
+
+Talk soon,
+The Analog Team
+
+P.S. Your code is valid for 30 days. No rush, but don't forget.</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 2</span>
+            <span class="email-id">welcome-2</span>
+          </div>
+          <span class="email-subject">The one thing most bags get wrong</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+Here's why most bags frustrate people:
+
+They make you choose.
+
+Style OR function. Capacity OR portability. Professional OR practical.
+
+That's why we designed convertible bags. The Analog Totepack converts from tote to backpack. Carry it as a tote for meetings. Switch to backpack mode when your hands are full.
+
+One bag. Multiple modes. Zero compromise.
+
+Here's a quick tip if you're always digging for keys: clip them to the carabiner that comes built into every Analog bag. Sounds small. Changes everything.
+
+Your 10% code (<strong>MYMATCH10</strong>) is still active if you're ready.</p>
+          <a href="#" class="email-cta">Shop Your Match</a>
+          <p>Cheers,
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 5</span>
+            <span class="email-id">welcome-3</span>
+          </div>
+          <span class="email-subject">What 1291 customers say</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+We've shipped over 1,000 bags worldwide. Here's what people tell us:
+
+"Finally a bag with actual organization. I stopped digging for my keys." - Sarah, New York
+
+"I use it as my work bag and my diaper bag. Same bag, no judgment." - Michelle, Singapore
+
+"The corduroy mini tote gets so many compliments. I added a Bobbin and it's completely unique now." - Jamie, London
+
+"My third Analog bag. Once you try one, you get it." - Chen Wei, Taipei
+
+Your match is still waiting: <strong>{recommended_product}</strong>
+
+Your code: <strong>MYMATCH10</strong> (10% off)</p>
+          <a href="#" class="email-cta">See Your Recommendation</a>
+          <p>Questions before you decide? Just reply.
+
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hot Path -->
+    <section class="sequence-section">
+      <div class="sequence-header">
+        <span class="sequence-badge hot">Hot</span>
+        <h2>Hot Path (Score 80-100)</h2>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 1</span>
+            <span class="email-id">hot-1</span>
+          </div>
+          <span class="email-subject">Your bag is waiting</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+You know what you want. Let's make it happen.
+
+Your match: <strong>{recommended_product}</strong>
+Your code: <strong>MYMATCH10</strong> (10% off)</p>
+          <a href="#" class="email-cta">Shop Now</a>
+          <p>Quick logistics:
+- Ships within 48 hours
+- Free shipping over 60 SGD
+- Easy returns if it's not perfect
+
+Any questions? Reply. We're fast.
+
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 4</span>
+            <span class="email-id">hot-2</span>
+          </div>
+          <span class="email-subject">Last call: 10% off ends soon</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+Your 10% welcome code (<strong>MYMATCH10</strong>) expires this week.
+
+Your quiz match, the <strong>{recommended_product}</strong>, is in stock and ready to ship.
+
+This is our last reminder. After this, you'll pay full price.</p>
+          <a href="#" class="email-cta">Get Your Bag + Save 10%</a>
+          <p>See you on the other side,
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Warm Path -->
+    <section class="sequence-section">
+      <div class="sequence-header">
+        <span class="sequence-badge warm">Warm</span>
+        <h2>Warm Path (Score 50-79)</h2>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 1</span>
+            <span class="email-id">warm-1</span>
+          </div>
+          <span class="email-subject">Which Analog bag is right?</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+Your quiz showed you're ready to upgrade your bag. The question is which one.
+
+Here's a quick breakdown:
+
+<strong>If you need maximum versatility:</strong>
+The Analog Totepack ($129). Converts from tote to backpack. Fits laptop, gym clothes, and lunch. Bottom zippered compartment separates items.
+
+<strong>If you want classic quality:</strong>
+The Black Analog Medium Tote ($68). 4.86 stars from 83 reviews. Durable cotton canvas. Goes with everything.
+
+<strong>If you want to stand out:</strong>
+Analog No.33 Mini Tote in Corduroy ($68). Limited edition. Water repellent. Add Bobbins for customization.
+
+<strong>If you travel frequently:</strong>
+The Analog Backpack v2 ($97). Fits 17" laptops. Luggage strap for trolleys. Hidden security pocket.
+
+Your quiz matched you with: <strong>{recommended_product}</strong></p>
+          <a href="#" class="email-cta">Compare All Options</a>
+          <p>Ready when you are. Code: <strong>MYMATCH10</strong>
+
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 3</span>
+            <span class="email-id">warm-2</span>
+          </div>
+          <span class="email-subject">What people say about your match</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+Your quiz matched you with the <strong>{recommended_product}</strong>. Here's what customers say about it:
+
+{review_1}
+
+{review_2}
+
+{review_3}
+
+These aren't cherry-picked. You can read all reviews on the product page.
+
+The pattern we see: people who were skeptical become repeat customers. Our average customer buys 1.8 Analog bags because once you experience the design, you get it.</p>
+          <a href="#" class="email-cta">See All Reviews</a>
+          <p>Your 10% code is ready: <strong>MYMATCH10</strong>
+
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 6</span>
+            <span class="email-id">warm-3</span>
+          </div>
+          <span class="email-subject">Your code expires soon</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+Quick reminder: your welcome code (<strong>MYMATCH10</strong>) expires in a few days.
+
+That's 10% off your first order, including your quiz match: <strong>{recommended_product}</strong>
+
+If you're waiting for a sign, this is it.</p>
+          <a href="#" class="email-cta">Use Your Code Now</a>
+          <p>Questions? Reply to this email. We answer everything.
+
+The Analog Team
+
+P.S. Not ready? No problem. But the code won't last forever.</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cold Path -->
+    <section class="sequence-section">
+      <div class="sequence-header">
+        <span class="sequence-badge cold">Cold</span>
+        <h2>Cold Path (Score 0-49)</h2>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 1</span>
+            <span class="email-id">cold-1</span>
+          </div>
+          <span class="email-subject">That bag frustration is real</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+You took our quiz but didn't buy. That's completely fine.
+
+Here's something we've learned from talking to thousands of bag shoppers:
+
+The frustration you feel about your current bag? It's not you being picky. Most bags are designed for how people think they live, not how they actually live.
+
+Think about your day. You're probably carrying more than you planned. The bag you bought for one purpose is now handling three. And nothing has a proper place anymore.
+
+This is why we obsess over features like:
+- Pockets sized for actual items (laptop, water bottle, sunglasses)
+- Carabiners for keys so you stop digging
+- Convertible straps for different moments in the same day
+
+When you're ready to explore, your quiz results are saved.</p>
+          <a href="#" class="email-cta">See Your Results Again</a>
+          <p>No pressure. Just wanted you to know: better exists.
+
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> Educational</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 3</span>
+            <span class="email-id">cold-2</span>
+          </div>
+          <span class="email-subject">3 bag features worth paying for</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+If you're researching bags, here's what actually matters:
+
+<strong>1. Water resistance</strong>
+Not waterproof (that's overkill). Water repellent handles rain, spills, and humidity. Your stuff stays dry. Your bag still looks good.
+
+<strong>2. Convertible carrying</strong>
+Tote handles for professional settings. Backpack straps when your hands are full. One bag that adapts to the moment.
+
+<strong>3. Intentional pockets</strong>
+Not more pockets. Better pockets. A laptop sleeve that actually fits a laptop. A bottle holder that fits your actual bottle. A carabiner for keys. Features you'll use daily.
+
+These aren't flashy. But they're the difference between a bag you love and one you replace in a year.
+
+Your quiz matched you with bags that have all three.</p>
+          <a href="#" class="email-cta">See Your Matches</a>
+          <p>Still browsing? That's fine. This stuff takes time.
+
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> Educational</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 7</span>
+            <span class="email-id">cold-3</span>
+          </div>
+          <span class="email-subject">Why we design in Singapore</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+Quick story about how this started.
+
+We were tired of bags that looked great in photos but failed in real life. So we started designing for the details:
+
+- The Analog Totepack was inspired by 1960s Le Corbusier architecture. Utilitarian. Functional. Beautiful because it works.
+- Every bag gets tested in Singapore's humidity. If it survives here, it survives anywhere.
+- We produce in limited batches. When a design sells out, it's gone. No mass production, no warehouse full of unsold inventory.
+
+We're not a huge company. We read every review. We answer every email.
+
+If you have questions about which bag fits your life, just reply. We'll help.</p>
+          <a href="#" class="email-cta">Explore the Collection</a>
+          <p>Thanks for being curious,
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> Brand story</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 10</span>
+            <span class="email-id">cold-4</span>
+          </div>
+          <span class="email-subject">Still thinking about it?</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+It's been a week since you took our quiz. Just checking in.
+
+Your top match was: <strong>{recommended_product}</strong>
+
+If you're still deciding, here are the most common questions people ask:
+
+<strong>Q: Will it fit my laptop?</strong>
+A: Check the product page for exact dimensions. Most of our totes and totepacks fit 15" laptops. The XL Laptop Tote fits up to 17".
+
+<strong>Q: What if it doesn't work for me?</strong>
+A: We have a straightforward return policy. If it's not right, send it back.
+
+<strong>Q: Is the quality worth the price?</strong>
+A: Read the reviews. 4.83 stars from 1,291 customers. The quality speaks for itself.
+
+Your 10% code (<strong>MYMATCH10</strong>) is still valid.</p>
+          <a href="#" class="email-cta">See Your Match</a>
+          <p>No worries if now isn't the right time. The bags will be here when you're ready.
+
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 10% off: MYMATCH10</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Win-Back -->
+    <section class="sequence-section">
+      <div class="sequence-header">
+        <span class="sequence-badge winback">Win-Back</span>
+        <h2>Win-Back Sequence (Lapsed)</h2>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 1</span>
+            <span class="email-id">winback-1</span>
+          </div>
+          <span class="email-subject">Still looking for the one?</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+A while back, you took our quiz to find your perfect bag.
+
+You matched with: <strong>{recommended_product}</strong>
+
+But you didn't pull the trigger. Totally fine.
+
+If something held you back, I'd love to know. Just reply with what's on your mind:
+- Price concern?
+- Not sure about size?
+- Waiting for a specific color?
+- Just browsing?
+
+We might be able to help.</p>
+          <a href="#" class="email-cta">See Your Match Again</a>
+          <p>The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> Feedback request</p>
+        </div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-meta">
+            <span class="email-day">Day 5</span>
+            <span class="email-id">winback-2</span>
+          </div>
+          <span class="email-subject">One more thing before we go</span>
+        </div>
+        <div class="email-body">
+          <p>Hey {first_name},
+
+This is our last email about your quiz results.
+
+You matched with the <strong>{recommended_product}</strong>, and we think it would serve you well. But we also respect your inbox.
+
+If you're ready, here's a special code: <strong>LASTCHANCE15</strong>
+
+That's 15% off your first order. Valid for 7 days.</p>
+          <a href="#" class="email-cta">Use Your 15% Code</a>
+          <p>If now isn't the right time, no hard feelings. We'll be here if you ever need a bag that actually works.
+
+All the best,
+The Analog Team</p>
+        </div>
+        <div class="email-footer">
+          <p><strong>CTA/Offer:</strong> 15% off: LASTCHANCE15</p>
+        </div>
+      </div>
+    </section>
+
+    <footer style="text-align: center; padding-top: 40px; border-top: 2px solid var(--color-secondary); margin-top: 60px;">
+      <p style="font-size: 12px; color: var(--color-text-muted);">14 emails across 5 automated sequences</p>
+      <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;"><a href="index.html" style="color: var(--color-primary); text-decoration: none;">&larr; Back to Overview</a></p>
+    </footer>
+  </div>
+</body>
+</html>
