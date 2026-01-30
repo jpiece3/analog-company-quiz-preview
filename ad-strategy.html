@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Strategy - The Analog Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0000FF;
+      --color-secondary: #6A9AE6;
+      --color-background: #FFFFFF;
+      --color-background-alt: #F5F5FF;
+      --color-text: #0000FF;
+      --color-text-muted: #6A9AE6;
+      --color-accent: #00CC66;
+      --color-border: #0000FF;
+      --font-heading: 'Jost', sans-serif;
+      --font-body: 'Source Code Pro', monospace;
+      --border-radius: 0px;
+      --shadow: 4px 4px 0 #0000FF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-primary);
+      text-decoration: none;
+      margin-bottom: 40px;
+      padding: 8px 16px;
+      border: 2px solid var(--color-primary);
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-secondary);
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ad-card {
+      background: var(--color-background);
+      border: 2px solid var(--color-primary);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .ad-card h3 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      color: var(--color-text-muted);
+    }
+
+    .ad-preview {
+      background: var(--color-background-alt);
+      border: 2px solid var(--color-secondary);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .ad-preview .headline {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .ad-preview .description {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+    }
+
+    .ad-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      font-size: 12px;
+    }
+
+    .ad-meta-item {
+      background: white;
+      border: 1px solid var(--color-secondary);
+      padding: 12px;
+    }
+
+    .ad-meta-item strong {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 10px;
+      color: var(--color-text-muted);
+      margin-bottom: 4px;
+    }
+
+    .testing-card {
+      background: var(--color-accent);
+      color: white;
+      padding: 32px;
+      margin-top: 40px;
+    }
+
+    .testing-card h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .testing-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .testing-card li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .testing-card li:last-child {
+      border-bottom: none;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 2px solid var(--color-secondary);
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 32px; }
+      .container { padding: 40px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Overview</a>
+
+    <header>
+      <span class="badge">Strategy Pack</span>
+      <h1>Ad Strategy 📣</h1>
+      <p class="subtitle">Platform-specific ad variations based on your brand's psychological positioning angles. Ready to test and optimize.</p>
+    </header>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">G</div>
+        <h2>Google Ads</h2>
+      </div>
+
+      <div class="ad-card">
+        <h3>Angle 1: The One-Bag Life</h3>
+        <div class="ad-preview">
+          <div class="headline">One Bag. Work. Gym. Life.</div>
+          <div class="description">Stop switching bags. The Analog Totepack converts from tote to backpack. Built-in drink holder, laptop sleeve, endless pockets. Free shipping.</div>
+        </div>
+        <div class="ad-meta">
+          <div class="ad-meta-item">
+            <strong>Keywords</strong>
+            work tote bag, everyday carry bag, convertible tote backpack
+          </div>
+          <div class="ad-meta-item">
+            <strong>Negative Keywords</strong>
+            cheap, knockoff, luxury designer
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <h3>Angle 2: Thoughtful Design</h3>
+        <div class="ad-preview">
+          <div class="headline">Finally. A Bag That Gets It.</div>
+          <div class="description">Built-in drink holder. Carabiner for keys. Laptop sleeve fits 17". Someone finally designed a bag for how you actually live.</div>
+        </div>
+        <div class="ad-meta">
+          <div class="ad-meta-item">
+            <strong>Keywords</strong>
+            canvas tote bag, laptop tote bag, work bag women
+          </div>
+          <div class="ad-meta-item">
+            <strong>Negative Keywords</strong>
+            DIY, craft supplies, promotional
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <h3>Angle 3: Make It Yours</h3>
+        <div class="ad-preview">
+          <div class="headline">Your Bag. Your Colors. Your Way.</div>
+          <div class="description">Personalize with Bobbins, enamel pins & patches. Endless color combinations. Create a bag as unique as you. Ships worldwide.</div>
+        </div>
+        <div class="ad-meta">
+          <div class="ad-meta-item">
+            <strong>Keywords</strong>
+            personalized tote bag, customizable bag, cute tote bag
+          </div>
+          <div class="ad-meta-item">
+            <strong>Negative Keywords</strong>
+            monogram, corporate gifts, wedding
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">f</div>
+        <h2>Facebook / Instagram Ads</h2>
+      </div>
+
+      <div class="ad-card">
+        <h3>Hook 1: The Overwhelmed Multitasker (Hot Segment)</h3>
+        <div class="ad-preview">
+          <div class="headline">POV: You only need ONE bag now</div>
+          <div class="description">Work laptop? ✓ Gym shoes? ✓ Snacks for the kids? ✓ The Analog Totepack goes from boardroom to playground to date night. No more bag switching. Take the quiz to find your perfect match.</div>
+        </div>
+        <div class="ad-meta">
+          <div class="ad-meta-item">
+            <strong>Visual Direction</strong>
+            UGC-style video showing one bag through multiple daily scenarios
+          </div>
+          <div class="ad-meta-item">
+            <strong>Target Audience</strong>
+            Organized Multitasker segment - busy professionals, parents
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <h3>Hook 2: The Style Seeker (Warm Segment)</h3>
+        <div class="ad-preview">
+          <div class="headline">Functional bags are always ugly. Until now.</div>
+          <div class="description">Why does every practical bag look like it belongs in a gym locker? The Analog Totepack comes in 15 colors with endless customization options. Finally, a bag that works AND looks like you.</div>
+        </div>
+        <div class="ad-meta">
+          <div class="ad-meta-item">
+            <strong>Visual Direction</strong>
+            Carousel showing color options and customization accessories
+          </div>
+          <div class="ad-meta-item">
+            <strong>Target Audience</strong>
+            Expressive Individualist segment - creative professionals, students
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <h3>Hook 3: The Life Changer (Warm Segment)</h3>
+        <div class="ad-preview">
+          <div class="headline">New chapter? New bag.</div>
+          <div class="description">Starting a new job, expecting a baby, or just ready for an upgrade? Your old bag doesn't fit who you're becoming. Take our 2-minute quiz to find the bag that fits your next chapter.</div>
+        </div>
+        <div class="ad-meta">
+          <div class="ad-meta-item">
+            <strong>Visual Direction</strong>
+            Lifestyle imagery showing life transitions, aspirational moments
+          </div>
+          <div class="ad-meta-item">
+            <strong>Target Audience</strong>
+            Life Changer segment - new parents, career changers
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testing-card">
+      <h3>A/B Testing Recommendations</h3>
+      <ul>
+        <li><strong>Start with:</strong> Hook 1 (Multitasker) vs Hook 2 (Style Seeker) - 60/40 budget split</li>
+        <li><strong>Creative test:</strong> UGC-style video vs product carousel</li>
+        <li><strong>Copy test:</strong> Question hook ("Still switching bags?") vs Statement hook ("One bag. Everything.")</li>
+        <li><strong>Audience test:</strong> Interest-based (travel, organization) vs Lookalike (past purchasers)</li>
+        <li><strong>Budget allocation:</strong> $50/day minimum per ad set for statistical significance</li>
+      </ul>
+    </div>
+
+    <footer>
+      <p>Quiz Funnel Package for <a href="https://analogcompany.co" target="_blank">The Analog Company</a></p>
+      <p style="margin-top: 8px;">Generated January 2026</p>
+    </footer>
+  </div>
+</body>
+</html>

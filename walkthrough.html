@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Analog Company - Quiz Funnel Walkthrough</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0000FF;
+      --color-secondary: #6A9AE6;
+      --color-background: #FFFFFF;
+      --color-background-alt: #F5F5FF;
+      --color-text: #0000FF;
+      --color-text-muted: #6A9AE6;
+      --color-accent: #00CC66;
+      --color-border: #0000FF;
+      --font-heading: 'Jost', sans-serif;
+      --font-body: 'Source Code Pro', monospace;
+      --border-radius: 0px;
+      --shadow: 4px 4px 0 #0000FF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-primary);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 42px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--color-text);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 2px solid var(--color-secondary);
+      margin: 48px 0;
+    }
+
+    /* Steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      border: 2px solid var(--color-primary);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--color-primary);
+      color: white;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 40px;
+      text-align: center;
+    }
+
+    .step-content h3 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-bottom: 0;
+    }
+
+    /* Value points */
+    .value-points {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .value-point {
+      border-left: 4px solid var(--color-primary);
+      padding: 16px 20px;
+      background: var(--color-background-alt);
+    }
+
+    .value-point h3 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .value-point p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-bottom: 0;
+    }
+
+    /* Channels grid */
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .channel {
+      border: 2px solid var(--color-primary);
+      padding: 24px;
+    }
+
+    .channel h3 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .channel p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-bottom: 0;
+    }
+
+    /* Deliverables */
+    .deliverables {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .deliverable {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border: 2px solid var(--color-secondary);
+      font-size: 14px;
+    }
+
+    .deliverable a {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .deliverable a:hover {
+      text-decoration: underline;
+    }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .stat {
+      text-align: center;
+      border: 2px solid var(--color-primary);
+      padding: 24px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 2px solid var(--color-secondary);
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .container {
+        padding: 40px 16px;
+      }
+
+      .step {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .channels-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .deliverable {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Back to Overview</a>
+
+    <header>
+      <span class="badge">Quiz Funnel Walkthrough</span>
+      <h1>Find Your Perfect Analog Bag</h1>
+      <p class="subtitle">A lead generation quiz built for The Analog Company. It matches visitors to their ideal bag, captures their email, and nurtures them toward a purchase with personalized recommendations.</p>
+    </header>
+
+    <!-- Section 1: How It Works -->
+    <section>
+      <span class="section-label">The Flow</span>
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Visitor Lands on the Quiz Page</h3>
+            <p>A dedicated landing page invites visitors to find their perfect bag. The headline speaks to the core problem: too many bag options, not enough clarity.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>They Answer 7 Questions</h3>
+            <p>Quick questions about their daily life, carry habits, style priorities, and lifestyle. Card selections, sliders, and toggles keep it engaging. Takes about 2 minutes.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Email Capture</h3>
+            <p>After the last question, we ask for their email to send their personalized bag match plus a 10% discount code. No email gate before the quiz starts.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Personalized Results</h3>
+            <p>Each visitor sees their score, profile name, and specific product recommendations. Five possible profiles: Organized Multitasker, Expressive Individualist, Practical Minimalist, Life Changer, or Traveler/Adventurer.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>Automated Email Nurture</h3>
+            <p>14 emails across 5 sequences fire automatically based on their score. Hot leads get purchase nudges. Warm leads get styling inspiration and social proof. Cold leads get brand education.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Section 2: Why It Works -->
+    <section>
+      <span class="section-label">The Psychology</span>
+      <h2>Why It Works</h2>
+      <div class="value-points">
+        <div class="value-point">
+          <h3>Solves Decision Paralysis</h3>
+          <p>Your customers are overwhelmed by bag options and unsure which size, style, or type fits their lifestyle. The quiz cuts through that noise and gives them a clear, personalized answer.</p>
+        </div>
+        <div class="value-point">
+          <h3>Feels Personal, Not Salesy</h3>
+          <p>People love quizzes because they learn something about themselves. Instead of pushing products, you're helping visitors understand their carry style. The recommendation feels earned, not pitched.</p>
+        </div>
+        <div class="value-point">
+          <h3>Qualifies Leads Automatically</h3>
+          <p>Every answer generates a score. Hot leads (ready to buy) get fast-tracked to purchase. Warm leads get proof and comparisons. Cold leads get educated. No manual sorting needed.</p>
+        </div>
+        <div class="value-point">
+          <h3>Matches Life Transitions</h3>
+          <p>Many of your buyers are in a life change: new job, new baby, upcoming trip. The quiz catches them at exactly that moment and connects the transition to the right bag.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Section 3: Where to Use It -->
+    <section>
+      <span class="section-label">Distribution</span>
+      <h2>Where to Use It</h2>
+      <p style="margin-bottom: 24px;">The quiz works anywhere you can share a link. Here are the highest-impact channels for an e-commerce brand like Analog.</p>
+      <div class="channels-grid">
+        <div class="channel">
+          <h3>Your Website</h3>
+          <p>Add a "Find Your Bag" button on your homepage, collection pages, and blog posts. Site visitors who take the quiz convert at 3-5x the rate of passive browsers.</p>
+        </div>
+        <div class="channel">
+          <h3>Instagram &amp; TikTok</h3>
+          <p>Link in bio, story swipe-ups, and Reels with "take the quiz" CTAs. Quiz content performs well on visual platforms where your bags already shine.</p>
+        </div>
+        <div class="channel">
+          <h3>Paid Ads</h3>
+          <p>Use the quiz as your ad destination instead of a product page. "Not sure which bag is right for you? Take our 2-minute quiz." Lower CPA than direct-to-product ads.</p>
+        </div>
+        <div class="channel">
+          <h3>Email Signatures &amp; Newsletters</h3>
+          <p>Add a quiz link to your email signature and existing newsletters. Converts passive subscribers into qualified leads with a profile and product match.</p>
+        </div>
+        <div class="channel">
+          <h3>Pinterest</h3>
+          <p>Pin the quiz landing page with lifestyle imagery. Pinterest users actively search for bag recommendations and gift ideas. High-intent traffic.</p>
+        </div>
+        <div class="channel">
+          <h3>QR Codes</h3>
+          <p>Print on packaging inserts, business cards, or event signage. "Scan to find your perfect Analog bag." Bridges offline to online.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Section 4: What You Get -->
+    <section>
+      <span class="section-label">Your Package</span>
+      <h2>What You Get</h2>
+      <div class="deliverables">
+        <div class="deliverable">
+          <span>Conversion-optimized landing page</span>
+        </div>
+        <div class="deliverable">
+          <span>Interactive quiz with 7 questions and 5 result profiles</span>
+        </div>
+        <div class="deliverable">
+          <span>14 automated emails across 5 sequences</span>
+          <a href="email-sequences.html">View Emails</a>
+        </div>
+        <div class="deliverable">
+          <span>Complete market research and brand analysis</span>
+          <a href="research.html">View Research</a>
+        </div>
+        <div class="deliverable">
+          <span>Copy strategy with psychological breakdown</span>
+          <a href="quiz-copy-explainer.html">View Copy</a>
+        </div>
+        <div class="deliverable">
+          <span>Analytics dashboard with funnel metrics</span>
+        </div>
+        <div class="deliverable">
+          <span>Ad strategy for Google, Facebook, and Instagram</span>
+          <a href="ad-strategy.html">View Ads</a>
+        </div>
+        <div class="deliverable">
+          <span>30-day social content calendar</span>
+          <a href="social-content.html">View Calendar</a>
+        </div>
+        <div class="deliverable">
+          <span>Sales scripts for hot, warm, and cold leads</span>
+          <a href="sales-scripts.html">View Scripts</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Section 5: Quick Stats -->
+    <section>
+      <span class="section-label">At a Glance</span>
+      <h2>Quick Stats</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Quiz Questions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Result Profiles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Email Sequences</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">14</div>
+          <div class="stat-label">Total Emails</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Lead Temperatures</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">15</div>
+          <div class="stat-label">Products Mapped</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Quiz Funnel Package for <a href="https://analogcompany.co" target="_blank">The Analog Company</a></p>
+      <p style="margin-top: 8px;">Generated January 2026</p>
+    </footer>
+  </div>
+</body>
+</html>

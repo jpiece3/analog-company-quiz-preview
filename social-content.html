@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Content Roadmap - The Analog Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0000FF;
+      --color-secondary: #6A9AE6;
+      --color-background: #FFFFFF;
+      --color-background-alt: #F5F5FF;
+      --color-text: #0000FF;
+      --color-text-muted: #6A9AE6;
+      --color-accent: #00CC66;
+      --color-border: #0000FF;
+      --font-heading: 'Jost', sans-serif;
+      --font-body: 'Source Code Pro', monospace;
+      --border-radius: 0px;
+      --shadow: 4px 4px 0 #0000FF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-primary);
+      text-decoration: none;
+      margin-bottom: 40px;
+      padding: 8px 16px;
+      border: 2px solid var(--color-primary);
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-secondary);
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .pillar-card {
+      background: var(--color-background-alt);
+      border: 2px solid var(--color-primary);
+      padding: 24px;
+    }
+
+    .pillar-card h3 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .pillar-card .keywords {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+    }
+
+    .pillar-card p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .platform-card {
+      background: var(--color-background);
+      border: 2px solid var(--color-primary);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .platform-card h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .platform-card .meta {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-secondary);
+    }
+
+    .platform-card ul {
+      list-style: none;
+      padding: 0;
+      font-size: 13px;
+    }
+
+    .platform-card li {
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .platform-card li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .calendar-table th {
+      background: var(--color-primary);
+      color: white;
+      padding: 12px;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .calendar-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--color-secondary);
+      vertical-align: top;
+    }
+
+    .calendar-table tr:hover {
+      background: var(--color-background-alt);
+    }
+
+    .week-header {
+      background: var(--color-background-alt);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .week-header td {
+      padding: 16px 12px;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .platform-tag {
+      display: inline-block;
+      background: var(--color-secondary);
+      color: white;
+      padding: 2px 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 2px solid var(--color-secondary);
+      margin-top: 60px;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 32px; }
+      .container { padding: 40px 16px; }
+      .calendar-table { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Overview</a>
+
+    <header>
+      <span class="badge">Strategy Pack</span>
+      <h1>Social Content 📱</h1>
+      <p class="subtitle">A 30-day content roadmap with platform-specific strategies and ready-to-use post ideas.</p>
+    </header>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📌</div>
+        <h2>Content Pillars</h2>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <h3>Everyday Carry Solutions</h3>
+          <div class="keywords">Keywords: work tote bag, everyday carry bag, laptop tote</div>
+          <p>Practical content showing how Analog bags solve daily organization challenges. Real scenarios, real solutions.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Make It Yours</h3>
+          <div class="keywords">Keywords: personalized tote, customizable bag</div>
+          <p>Customization content featuring Bobbins, pins, patches. Customer creations, color combinations, personality expression.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Life Transitions</h3>
+          <div class="keywords">Keywords: work bag women, tote bag for new moms</div>
+          <p>Content for people in transition - new jobs, new parents, travelers. Your bag should fit who you're becoming.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Behind The Analog World</h3>
+          <div class="keywords">Keywords: small batch, Singapore design</div>
+          <p>Brand story, limited editions, production process, team intros. Build community through transparency.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <h2>Platform Strategy</h2>
+      </div>
+      <div class="platform-grid">
+        <div class="platform-card">
+          <h3>📸 Instagram</h3>
+          <div class="meta">Best for: Expressive Individualist, Style-conscious buyers<br>Frequency: 4-5 posts/week</div>
+          <ul>
+            <li>Reels showing bag versatility (day-to-night transitions)</li>
+            <li>Carousel posts: "What's in my bag" customer features</li>
+            <li>Stories: Behind-the-scenes, polls, Q&A</li>
+            <li>UGC reposts with customization highlights</li>
+          </ul>
+        </div>
+        <div class="platform-card">
+          <h3>🎵 TikTok</h3>
+          <div class="meta">Best for: Younger audience, trend-driven discovery<br>Frequency: 3-4 posts/week</div>
+          <ul>
+            <li>GRWM (Get Ready With Me) featuring bag packing</li>
+            <li>Trend participation with product placement</li>
+            <li>"Things that just make sense" format</li>
+            <li>Before/after bag organization transformations</li>
+          </ul>
+        </div>
+        <div class="platform-card">
+          <h3>📍 Pinterest</h3>
+          <div class="meta">Best for: Long-tail discovery, aspirational shoppers<br>Frequency: 10-15 pins/week</div>
+          <ul>
+            <li>Product pins with lifestyle imagery</li>
+            <li>"Work bag essentials" infographics</li>
+            <li>Color palette mood boards</li>
+            <li>Travel packing guides featuring products</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📅</div>
+        <h2>30-Day Content Calendar</h2>
+      </div>
+      <table class="calendar-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Platform</th>
+            <th>Content Type</th>
+            <th>Topic / Hook</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="week-header">
+            <td colspan="4">Week 1: Awareness (Cold Segment Focus)</td>
+          </tr>
+          <tr>
+            <td>Mon</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Reel</td>
+            <td>"What if you only needed one bag?" (problem awareness)</td>
+          </tr>
+          <tr>
+            <td>Tue</td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td>Trend</td>
+            <td>"Things in my bag that changed my life" sound</td>
+          </tr>
+          <tr>
+            <td>Wed</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Carousel</td>
+            <td>5 signs your current bag isn't working for you</td>
+          </tr>
+          <tr>
+            <td>Thu</td>
+            <td><span class="platform-tag">Pinterest</span></td>
+            <td>Pin</td>
+            <td>Work bag essentials infographic</td>
+          </tr>
+          <tr>
+            <td>Fri</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Stories</td>
+            <td>Poll: "How many bags do you switch between daily?"</td>
+          </tr>
+
+          <tr class="week-header">
+            <td colspan="4">Week 2: Credibility (Warm Segment Focus)</td>
+          </tr>
+          <tr>
+            <td>Mon</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>UGC Repost</td>
+            <td>Customer testimonial - "I finally found THE bag"</td>
+          </tr>
+          <tr>
+            <td>Tue</td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td>GRWM</td>
+            <td>Packing my Totepack for work-to-gym day</td>
+          </tr>
+          <tr>
+            <td>Wed</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Carousel</td>
+            <td>4.83 stars from 1,291 reviews - what customers say</td>
+          </tr>
+          <tr>
+            <td>Thu</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Reel</td>
+            <td>Behind the scenes: How we design for real life</td>
+          </tr>
+          <tr>
+            <td>Fri</td>
+            <td><span class="platform-tag">Pinterest</span></td>
+            <td>Pin</td>
+            <td>Customer photo gallery - real people, real bags</td>
+          </tr>
+
+          <tr class="week-header">
+            <td colspan="4">Week 3: Conversion (Hot Segment Focus)</td>
+          </tr>
+          <tr>
+            <td>Mon</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Reel</td>
+            <td>Quiz CTA: "Find your perfect bag in 2 minutes"</td>
+          </tr>
+          <tr>
+            <td>Tue</td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td>Product</td>
+            <td>Totepack full feature walkthrough</td>
+          </tr>
+          <tr>
+            <td>Wed</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Carousel</td>
+            <td>Which size is right for you? (with quiz link)</td>
+          </tr>
+          <tr>
+            <td>Thu</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Stories</td>
+            <td>Limited edition drop announcement + urgency</td>
+          </tr>
+          <tr>
+            <td>Fri</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Reel</td>
+            <td>Unboxing + first impressions from new customer</td>
+          </tr>
+
+          <tr class="week-header">
+            <td colspan="4">Week 4: Community (All Segments)</td>
+          </tr>
+          <tr>
+            <td>Mon</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>UGC Repost</td>
+            <td>Customer customization feature (Bobbins, pins)</td>
+          </tr>
+          <tr>
+            <td>Tue</td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td>Story</td>
+            <td>How Analog started - founder story</td>
+          </tr>
+          <tr>
+            <td>Wed</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Carousel</td>
+            <td>"Welcome to the Analog World" community feature</td>
+          </tr>
+          <tr>
+            <td>Thu</td>
+            <td><span class="platform-tag">IG</span></td>
+            <td>Stories</td>
+            <td>Q&A: Ask us anything about bags, customization</td>
+          </tr>
+          <tr>
+            <td>Fri</td>
+            <td><span class="platform-tag">Pinterest</span></td>
+            <td>Pin</td>
+            <td>Color palette inspiration board for spring</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>Quiz Funnel Package for <a href="https://analogcompany.co" target="_blank">The Analog Company</a></p>
+      <p style="margin-top: 8px;">Generated January 2026</p>
+    </footer>
+  </div>
+</body>
+</html>
